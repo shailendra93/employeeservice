@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class EmployeeCustomerException extends ResponseEntityExceptionHandler {
+public class EmployeeCustomException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {BadRequestException.class})
     protected ResponseEntity<ErrorRequestResponse> badRequestException(final BadRequestException ex) {
@@ -35,6 +35,13 @@ public class EmployeeCustomerException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
     protected ResponseEntity<ErrorRequestResponse> handleIllegalRequest(final IllegalArgumentException ex) {
+
+        return new ResponseEntity<ErrorRequestResponse>(
+                new ErrorRequestResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), ResponseStatus.FAILURE.name()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {ContraintViolationException.class})
+    protected ResponseEntity<ErrorRequestResponse> handleContraintViolationException(final ContraintViolationException ex) {
 
         return new ResponseEntity<ErrorRequestResponse>(
                 new ErrorRequestResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), ResponseStatus.FAILURE.name()), HttpStatus.BAD_REQUEST);

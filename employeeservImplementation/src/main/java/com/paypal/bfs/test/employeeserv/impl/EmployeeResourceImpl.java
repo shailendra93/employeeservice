@@ -85,13 +85,13 @@ public class EmployeeResourceImpl implements EmployeeResource {
             throw new BadRequestException("request body is empty!!");
         }
         if(StringUtils.isEmpty(employee.getFirstName())){
-            throw new BadRequestException("first name is mandatory!!");
+            throw new BadRequestException("first name is required!!");
         }
         if(StringUtils.isEmpty(employee.getLastName())){
-            throw new BadRequestException("last name is mandatory!!");
+            throw new BadRequestException("last name is required!!");
         }
         if(StringUtils.isEmpty(employee.getDateOfBirth())){
-            throw new BadRequestException("date of birth is mandatory!!");
+            throw new BadRequestException("date of birth is required!!");
         }
 
         validateDob(employee.getDateOfBirth());
@@ -100,19 +100,19 @@ public class EmployeeResourceImpl implements EmployeeResource {
             throw new BadRequestException("address field can't be null!!");
         }
         if(StringUtils.isEmpty(employee.getAddress().getLine1())){
-            throw new BadRequestException("line 1 of address is mandatory!!");
+            throw new BadRequestException("line 1 of address is required!!");
         }
         if(StringUtils.isEmpty(employee.getAddress().getCity())){
-            throw new BadRequestException("city  is mandatory!!");
+            throw new BadRequestException("city  is required!!");
         }
         if(StringUtils.isEmpty(employee.getAddress().getState())){
-            throw new BadRequestException("state  is mandatory!!");
+            throw new BadRequestException("state  is required!!");
         }
         if(StringUtils.isEmpty(employee.getAddress().getCountry())){
-            throw new BadRequestException("country  is mandatory!!");
+            throw new BadRequestException("country  is required!!");
         }
         if(StringUtils.isEmpty(employee.getAddress().getZipCode())){
-            throw new BadRequestException("zipcode  is mandatory!!");
+            throw new BadRequestException("zipcode  is required!!");
         }
        validateZipCode(employee.getAddress().getZipCode());
 
@@ -120,7 +120,7 @@ public class EmployeeResourceImpl implements EmployeeResource {
 
     protected Integer validateEmployeeId(final String id){
         if(StringUtils.isEmpty(id)){
-            throw new BadRequestException("id is mandatory");
+            throw new BadRequestException("id is required");
         }
         Integer empId;
         try {
